@@ -107,37 +107,47 @@ export default function Home() {
 
         {/* About Me Section - ปรับ Grid stats ให้เรียงใหม่ในมือถือ */}
         <motion.section id="about" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="scroll-mt-32">
-          <SectionHeading gradientColor="from-teal-400 to-emerald-400">About Me</SectionHeading>
-          <GlowCard>
-            <div className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 items-center">
-              <div className="md:col-span-8 space-y-6 text-neutral-400 text-sm md:text-base">
-                <p className="leading-relaxed text-center md:text-left">
-                  I'm Mongkol Wan, Recent graduate with a strong interest in computer software and programming. Familiar with various computer applications and basic programming concepts.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4 text-center">
-                  <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50">
-                    <p className="text-3xl md:text-5xl font-bold text-teal-400">1+</p>
-                    <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">Project finished</p>
-                  </div>
-                  <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50">
-                    <p className="text-3xl md:text-5xl font-bold text-teal-400">0</p>
-                    <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">Exp Years</p>
-                  </div>
-                  <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50">
-                    <p className="text-3xl md:text-5xl font-bold text-teal-400 text-nowrap">3.20/4.00</p>
-                    <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">GPA</p>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-4 flex flex-col items-center">
-                <div className="relative w-32 h-32 md:w-[180px] md:h-[180px] rounded-full overflow-hidden bg-black border-2 border-neutral-800 shadow-2xl">
-                  <Image src="/Mongkol1.jpg" alt="Mongkol" fill className="object-cover" />
-                </div>
-                <p className="mt-4 text-center font-bold text-sm md:text-base">Junior Programmer</p>
-              </div>
-            </div>
-          </GlowCard>
-        </motion.section>
+  <SectionHeading gradientColor="from-teal-400 to-emerald-400">About Me</SectionHeading>
+  <GlowCard>
+    <div className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 items-center">
+      <div className="md:col-span-8 space-y-6 text-neutral-400 text-sm md:text-base">
+        <p className="leading-relaxed text-center md:text-left">
+          I'm Mongkol Wan, Recent graduate with a strong interest in computer software and programming. Familiar with various computer applications and basic programming concepts.
+        </p>
+        
+        {/* ส่วนที่ปรับปรุง: ใช้ grid-cols-1 เป็นค่าเริ่มต้น (มือถือ) และเป็น md:grid-cols-3 (คอม) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 pt-4 text-center">
+          
+          <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50 flex flex-col justify-center">
+            <p className="text-3xl md:text-5xl font-bold text-teal-400">1+</p>
+            <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">Project finished</p>
+          </div>
+
+          <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50 flex flex-col justify-center">
+            <p className="text-3xl md:text-5xl font-bold text-teal-400">0</p>
+            <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">Exp Years</p>
+          </div>
+
+          <div className="bg-black/20 p-4 rounded-xl border border-neutral-800/50 flex flex-col justify-center">
+            {/* ปรับ text-2xl สำหรับมือถือ และ md:text-5xl สำหรับคอม เพื่อให้ "3.20/4.00" ไม่ล้นขอบ */}
+            <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-teal-400 whitespace-nowrap">
+              3.20 / 4.00
+            </p>
+            <p className="text-[10px] md:text-xs text-neutral-500 uppercase mt-1 tracking-widest">GPA</p>
+          </div>
+
+        </div>
+      </div>
+      
+      <div className="md:col-span-4 flex flex-col items-center">
+        <div className="relative w-32 h-32 md:w-[180px] md:h-[180px] rounded-full overflow-hidden bg-black border-2 border-neutral-800 shadow-2xl">
+          <Image src="/Mongkol1.jpg" alt="Mongkol" fill className="object-cover" />
+        </div>
+        <p className="mt-4 text-center font-bold text-sm md:text-base text-white">Junior Programmer</p>
+      </div>
+    </div>
+  </GlowCard>
+</motion.section>
 
         {/* Tools & Technologies - ปรับ Grid columns ให้พอดีมือถือ */}
         <motion.section id="skills" className="scroll-mt-32">
