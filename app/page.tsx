@@ -56,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 font-sans p-4 sm:p-8 md:p-12 lg:p-20 selection:bg-teal-400 selection:text-neutral-950 pt-20 md:pt-32">
+    <main className="min-h-screen bg-neutral-950 text-neutral-50 font-sans p-4 sm:p-8 md:p-12 lg:p-20 selection:bg-teal-400 selection:text-neutral-950 pt-28 md:pt-32">
       
       <div className="space-y-24 md:space-y-32 max-w-7xl mx-auto"> 
 
@@ -66,7 +66,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.8 }} 
-          className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 md:gap-12 items-center scroll-mt-32"
+          className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 md:gap-12 items-center scroll-mt-40 pt-10 md:pt-0"
         >
           <div className="md:col-span-8 space-y-6 text-center md:text-left">
             <span className="inline-block bg-neutral-800 border border-neutral-700 px-4 py-1 rounded-full text-xs md:text-sm text-neutral-400">
