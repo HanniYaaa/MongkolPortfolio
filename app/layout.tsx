@@ -28,11 +28,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-neutral-950">
-        {/* 2. วาง Navbar ไว้บนสุดตรงนี้ */}
+        {/* Navbar วางไว้เหมือนเดิม */}
         <Navbar /> 
         
-        {/* 3. children คือเนื้อหาหน้าเว็บทั้งหมดจะอยู่ถัดลงมา */}
-        {children}
+        {/* แก้ไขตรงนี้: ห่อ children ด้วย div และเพิ่ม pt-20 (Padding Top) 
+            เพื่อให้เนื้อหาขยับลงมาพ้นความสูงของ Navbar ในทุกหน้าครับ */}
+        <div className="flex-grow pt-20 md:pt-24">
+          {children}
+        </div>
+        
       </body>
     </html>
   );
