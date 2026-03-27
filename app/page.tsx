@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Typewriter from 'typewriter-effect';
 
 // Component สำหรับหัวข้อแต่ละส่วน - ปรับขนาด Text ให้ Responsive
 const SectionHeading = ({ children, gradientColor }: { children: React.ReactNode, gradientColor: string }) => (
@@ -75,14 +76,26 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
               Hi, I'm <span className="text-white">Mongkol Wan</span>
             </h1>
-            <p className="text-base md:text-xl text-neutral-400 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-              A passionate and enthusiastic fresh graduate programmer, eager to learn various tasks with dedication.
+            <p className="text-base md:text-xl text-neutral-400 max-w-2xl mx-auto md:mx-0 leading-relaxed min-h-[4em] md:min-h-[3em]">
+            <Typewriter
+                options={{
+                   strings: [
+                      "A passionate and enthusiastic fresh graduate programmer, Eager to learn various tasks with dedication."
+                    ],
+                autoStart: true,
+                loop: true,
+                delay: 50,
+                deleteSpeed: 30,
+                // @ts-ignore - หากยังขึ้นแดงทั้งที่สะกดถูก ให้ใช้บรรทัดนี้ปิด Error ชั่วคราว
+                pauseFor: 2000, 
+                }}
+            />
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
               <button className="bg-white text-black px-8 py-3 rounded-xl font-bold hover:bg-neutral-200 transition text-sm md:text-base">
                 Download CV
               </button>
-              <a href="#work" className="border border-neutral-700 px-8 py-3 rounded-xl font-bold text-neutral-300 hover:border-white hover:text-white transition flex items-center justify-center text-sm md:text-base">
+              <a href="#project" className="border border-neutral-700 px-8 py-3 rounded-xl font-bold text-neutral-300 hover:border-white hover:text-white transition flex items-center justify-center text-sm md:text-base">
                 Explore My Projects
               </a>
             </div>
@@ -139,58 +152,133 @@ export default function Home() {
           </GlowCard>
         </motion.section>
 
-        {/* Tools & Technologies - ปรับ Grid columns ให้พอดีมือถือ */}
-        <motion.section id="skills" className="scroll-mt-32">
-          <SectionHeading gradientColor="from-teal-400 to-purple-400">Skills</SectionHeading>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
-            {[
-              { name: 'React', slug: 'react' },
-              { name: 'Next', slug: 'nextdotjs' },
-              { name: 'Tailwind', slug: 'tailwindcss' },
-              { name: 'Java', slug: 'openjdk' },
-              { name: 'Node', slug: 'nodedotjs' },
-              { name: 'C', slug: 'c' },
-              { name: 'HTML', slug: 'html5' },
-              { name: 'CSS', slug: 'css' },
-              { name: 'Dart', slug: 'dart' },
-              { name: 'Flutter', slug: 'flutter' },
-            ].map((skill) => (
-              <GlowCard key={skill.name}>
-                <div className="text-center group">
-                  <div className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-2 flex items-center justify-center">
-                    <img src={`https://cdn.simpleicons.org/${skill.slug}`} alt={skill.name} className="h-full w-full object-contain group-hover:scale-110 transition duration-300" />
+        {/* Skills Section - ปรับ py และ mt ให้กระชับขึ้น */}
+<motion.section id="skills" className="scroll-mt-32 py-12 md:py-16 overflow-hidden group/container">
+  <SectionHeading gradientColor="from-teal-400 to-purple-400">Skills</SectionHeading>
+  
+  <div className="relative w-full mt-4 md:mt-6">
+    {/* แถบเลื่อนไอคอน */}
+    <div className="flex animate-infinite-scroll gap-6 md:gap-10 hover:[animation-play-state:paused]">
+      {[...Array(2)].map((_, i) => (
+        <div key={i} className="flex gap-6 md:gap-10">
+          {[
+            { name: 'React', slug: 'react' },
+            { name: 'Next', slug: 'nextdotjs' },
+            { name: 'Tailwind', slug: 'tailwindcss' },
+            { name: 'Java', slug: 'openjdk' },
+            { name: 'Node', slug: 'nodedotjs' },
+            { name: 'C', slug: 'c' },
+            { name: 'HTML', slug: 'html5' },
+            { name: 'CSS', slug: 'css' },
+            { name: 'Dart', slug: 'dart' },
+            { name: 'Flutter', slug: 'flutter' },
+          ].map((skill, index) => (
+            <div key={`${skill.name}-${index}`} className="w-24 md:w-32 shrink-0 py-2">
+              <div className="relative group/card transition-all duration-300 rounded-2xl border border-transparent hover:border-teal-500/50 hover:bg-neutral-900/50 hover:shadow-[0_0_20px_rgba(20,184,166,0.3)] p-4">
+                <div className="flex flex-col items-center justify-center">
+                  <div className="h-8 w-8 md:h-12 md:w-12 mb-3">
+                    <img 
+                      src={`https://cdn.simpleicons.org/${skill.slug}`} 
+                      alt={skill.name}
+                      className="w-full h-full object-contain filter grayscale opacity-60 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-110 transition-all duration-500"
+                    />
                   </div>
-                  <span className="text-[10px] md:text-xs text-neutral-300 font-medium block truncate">{skill.name}</span>
+                  <span className="text-[10px] md:text-xs text-neutral-500 group-hover/card:text-teal-400 font-mono tracking-tighter transition-colors text-center">
+                    {skill.name}
+                  </span>
                 </div>
-              </GlowCard>
-            ))}
-          </div>
-        </motion.section>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</motion.section>
 
         {/* Project Section - ปรับ Layout ใน Card ให้ Stack ในมือถือ */}
-        <motion.section id="work" className="scroll-mt-32">
-          <SectionHeading gradientColor="from-emerald-400 to-teal-400">Project</SectionHeading>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <a href="https://github.com/HanniYaaa/Voice-Emotion-Recognition-Based-Transformer" target="_blank" rel="noopener noreferrer" className="block group w-full">
-              <GlowCard gradientColor="from-teal-400 to-emerald-400">
-                <div className="flex flex-col-reverse sm:flex-row gap-6 items-center">
-                  <div className="flex-1 space-y-2 text-center sm:text-left">
-                    <h4 className="text-lg md:text-xl font-bold group-hover:text-teal-400 transition-colors leading-snug">
-                      Voice Emotion Recognition
-                    </h4>
-                    <p className="text-xs md:text-sm text-neutral-500">An app used to categorize basic emotions using Transformer model</p>
-                    <div className="flex items-center justify-center sm:justify-start gap-2 text-[10px] md:text-xs text-teal-400 font-mono mt-2">
-                      <span>View Project</span><span>↗</span>
-                    </div>
-                  </div>
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-black overflow-hidden border border-neutral-800 shrink-0">
-                    <Image src="/voice.jpg" alt="Voice Project" fill className="object-cover group-hover:scale-110 transition duration-500" />
-                  </div>
+        <motion.section id="project" className="scroll-mt-32">
+  <SectionHeading gradientColor="from-emerald-400 to-teal-400">Project</SectionHeading>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    {/* Container หลักสำหรับการ Flip */}
+    <div className="group h-[220px] sm:h-[180px] [perspective:1000px]">
+      <div className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        
+        {/* --- ด้านหน้า (Front Side) --- */}
+        <div className="absolute inset-0 [backface-visibility:hidden]">
+          <GlowCard gradientColor="from-teal-400 to-emerald-400">
+            <div className="flex flex-col-reverse sm:flex-row gap-6 items-center h-full">
+              <div className="flex-1 space-y-2 text-center sm:text-left">
+                <h4 className="text-lg md:text-xl font-bold text-white leading-snug">
+                  Voice Emotion Recognition
+                </h4>
+                <p className="text-xs md:text-sm text-neutral-500">An app used to categorize basic emotions using Transformer model</p>
+                <div className="flex items-center justify-center sm:justify-start gap-2 text-[10px] md:text-xs text-teal-400 font-mono mt-2 animate-pulse">
+                  <span>Hover to see info</span><span>↺</span>
                 </div>
-              </GlowCard>
-            </a>
+              </div>
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-black overflow-hidden border border-neutral-800 shrink-0">
+                <Image src="/voice.jpg" alt="Voice Project" fill className="object-cover" />
+              </div>
+            </div>
+          </GlowCard>
+        </div>
+
+        {/* --- ด้านหลัง (Back Side) --- */}
+<div className="absolute inset-0 h-full w-full [transform:rotateY(180deg)] [backface-visibility:hidden]">
+  <GlowCard gradientColor="from-teal-400/40 to-emerald-400/40">
+    <div className="flex flex-col h-full justify-between">
+      
+      {/* ส่วนเนื้อหาหลัก */}
+      <div className="space-y-4">
+        <div className="flex justify-between items-start">
+          <div>
+            <h4 className="text-[10px] font-bold text-teal-400 uppercase tracking-[0.2em]">Project Overview</h4>
+            <div className="h-[1px] w-8 bg-teal-400 mt-1"></div>
           </div>
-        </motion.section>
+          <span className="text-[9px] text-neutral-500 font-mono">2025</span>
+        </div>
+        
+        <p className="text-[11px] md:text-[12px] text-neutral-400 leading-relaxed font-light">
+          Transformer-based model for <span className="text-neutral-200">Speech Emotion Recognition</span>. 
+          Analyzes emotions from sound waves with high accuracy and supports real-time operation.
+        </p>
+      </div>
+
+      {/* ส่วน Link แบบ Modern */}
+      <div className="pt-4 border-t border-neutral-800/50">
+        <a 
+          href="https://github.com/HanniYaaa/Voice-Emotion-Recognition-Based-Transformer" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="group/btn relative inline-flex items-center gap-2 text-[10px] font-bold tracking-widest text-neutral-400 hover:text-teal-400 transition-colors duration-300"
+        >
+          {/* ขีดเส้นใต้เท่ๆ เวลา Hover */}
+          <span className="relative">
+            VIEW ON GITHUB
+            <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-teal-400 transition-all duration-300 group-hover/btn:w-full"></span>
+          </span>
+          
+          {/* ไอคอนเล็กๆ ที่จะเด้งเมื่อ Hover */}
+          <span className="transition-transform duration-300 group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </GlowCard>
+</div>
+
+      </div>
+    </div>
+
+  </div>
+</motion.section>
 
         {/* Contact Section - ปรับ Layout ให้สมดุล */}
         <section id="contact" className="py-10 md:py-20 scroll-mt-32 relative">
@@ -205,13 +293,22 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col items-center md:items-start gap-4">
-                <div className="flex items-center gap-4 group bg-neutral-900/50 p-3 rounded-2xl border border-neutral-800 w-fit">
-                  <div className="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-lg">📧</div>
-                  <div className="text-left">
-                    <p className="text-[10px] text-neutral-500 uppercase tracking-wider font-bold">Email</p>
-                    <p className="text-sm md:text-base text-white font-medium">artee2547@gmail.com</p>
-                  </div>
-                </div>
+                <a 
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=artee2547@gmail.com&su=Contact%20from%20Portfolio"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-4 group bg-neutral-900/50 p-3 rounded-2xl border border-neutral-800 w-fit hover:border-teal-400/50 hover:bg-neutral-800 transition-all duration-300 cursor-pointer"
+>
+  <div className="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+    📧
+  </div>
+  <div className="text-left">
+    <p className="text-[10px] text-neutral-500 uppercase tracking-wider font-bold">Email</p>
+    <p className="text-sm md:text-base text-white font-medium group-hover:text-teal-400 transition-colors">
+      artee2547@gmail.com
+    </p>
+  </div>
+</a>
                 <div className="flex gap-4">
                   <a href="https://github.com/HanniYaaa" target="_blank" rel="noopener noreferrer" 
                      className="px-6 py-2 rounded-full border border-neutral-800 text-xs md:text-sm text-neutral-400 hover:border-teal-400 hover:text-white transition-all bg-neutral-900/30">
