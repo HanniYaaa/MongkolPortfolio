@@ -29,6 +29,13 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  const handleCardClick = (id: number) => {
+    // ถ้าคลิกตัวเดิมให้ปิด (null) ถ้าคลิกตัวใหม่ให้เปิด id นั้น
+    setActiveCard(activeCard === id ? null : id);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -105,7 +112,7 @@ export default function Home() {
             <div className="absolute -inset-px rounded-[30px] bg-gradient-to-r from-teal-400 to-purple-400 blur-xl opacity-50 animate-pulse-slow"></div>
             <div className="relative bg-neutral-900 border-2 border-neutral-800 rounded-[30px] p-6 sm:p-8 w-full max-w-[320px] space-y-4 text-center">
               <h3 className="text-xl md:text-2xl font-bold">Mongkol Wan</h3>
-              <p className="text-teal-400 text-sm">Programmer</p>
+              <p className="text-teal-400 text-sm">Junior Programmer</p>
               <div className="relative aspect-square overflow-hidden rounded-[20px] bg-black border border-neutral-800">
                 <Image src="/Mongkol1.jpg" alt="Mongkol" fill className="object-cover" priority />
               </div>
